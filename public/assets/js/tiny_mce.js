@@ -10,13 +10,16 @@ tinymce.init({
   /* enable title field in the Image dialog*/
   image_title: true,
   /* enable automatic uploads of images represented by blob or data URIs*/
-  automatic_uploads: true,
+    automatic_uploads: true,
+    relative_urls : false,
+    content_css : "",
+    convert_urls : false,
   /*
     URL of our upload handler (for more details check: https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_url)
-    images_upload_url: 'postAcceptor.php',
     here we add custom filepicker only to Image dialog
-  */
-  file_picker_types: 'image',
+    */
+   images_upload_url: '/uploadimage',
+   file_picker_types: 'image',
   /* and here's our custom image picker*/
   file_picker_callback: function (cb, value, meta) {
     var input = document.createElement('input');

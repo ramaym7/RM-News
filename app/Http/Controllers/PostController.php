@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,7 @@ class PostController extends Controller
     public function index()
     {
         $data = [
-            'posts' => Post::all(),
-            'posts' => Post::paginate(5),
+            'posts' => Post::orderBy('id', 'desc')->paginate(5),
         ];
         return view('admin.dashbord', $data);
     }
@@ -28,7 +28,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'categories' => Category::all(),
+        ];
+        return view('admin.create_news', $data);
     }
 
     /**
@@ -39,7 +42,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attr = $request->all();
+        $imgpath = $request->file('image')->store('images', 'public');
+        $attr['image'] = $imgpath;
+        Post::create($attr);
+        return redirect()->to(route('dashboard'));
     }
 
     /**
@@ -88,5 +95,11 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $imgpath = $request->file('file')->store('images', 'public');
+        return response()->json(['location' => "/storage/$imgpath"]);
     }
 }

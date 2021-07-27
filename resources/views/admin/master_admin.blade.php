@@ -30,7 +30,7 @@
                 </div>
                 <div
                     class="d-flex d-sm-flex justify-content-center justify-content-sm-center justify-content-md-start sm-100">
-                    <img src="{{ asset('assets/img/logo_brand.png') }}">
+                    <img class="img-brand" src="{{ asset('assets/img/logo_brand.png') }}">
                 </div>
                 <div class="ms-3 hide-sm">
                     <a class="link-nav active" href="#">Dashboard</a>
