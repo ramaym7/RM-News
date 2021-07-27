@@ -194,11 +194,6 @@ footer {
   text-decoration: none;
   color: inherit;
 }
-
-img{
-    width: 100%;
-    object-fit: cover;
-}
 .img-brand{
     width: 120px;
 }

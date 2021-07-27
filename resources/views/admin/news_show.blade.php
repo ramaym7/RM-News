@@ -1,11 +1,11 @@
 @extends('admin.master_admin')
-@section('Title')
-Show News
+@section('title')
+{{ $post->title }}
 @endsection
 @section('content')
 <section class="mt-dashboard">
     <div class="container">
-        <div class="mb-4"><a class="btn base-btn" role="button">Edit News</a></div>
+        <div class="mb-4"><a href="{{ route('dashboard.edit', $post->id) }}" class="btn base-btn" role="button">Edit News</a></div>
         <div class="col-md-7">
             <div class="mb-3">
                 <h2>{{ $post->title }}</h2>

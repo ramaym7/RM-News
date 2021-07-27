@@ -57,6 +57,9 @@ tinymce.init({
     };
 
     input.click();
-  },
+    },
+    image_class_list: [
+        {title: 'Responsive', value: 'rounded img-fluid'},
+    ],
   content_style: 'body { font-family:Heebo, sans-serif; font-size:14px }'
 });

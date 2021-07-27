@@ -24,3 +24,6 @@ Route::get('/dashboard/show/{post}', [PostController::class, 'show'])->name('das
 Route::get('/create', [PostController::class, 'create'])->name('dashboard.create');
 Route::post('/dashboard/store', [PostController::class, 'store'])->name('dashboard.store');
 Route::post('/uploadimage', [PostController::class, 'uploadImage'])->name('upload.image');
+Route::get('/dashboard/edit/{post}', [PostController::class, 'edit'])->name('dashboard.edit');
+Route::post('/dashboard/update/{post}', [PostController::class, 'update'])->name('dashboard.update');
+Route::get('/dashboard/destroy/{post}', [PostController::class, 'destroy'])->name('dashboard.destroy');

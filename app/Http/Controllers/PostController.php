@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -71,7 +73,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $data = [
+            'categories' => Category::all(),
+            'post' => $post
+        ];
+        return view('admin.edit_news', $data);
     }
 
     /**
@@ -83,7 +89,18 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $attr = $request->all();
+
+        if (request()->file('image')) {
+            Storage::delete($post->image);
+            $imgpath = $request->file('image')->store('images', 'public');
+        } else {
+            $imgpath = $post->image;
+        }
+
+        $attr['image'] = $imgpath;
+        $post->update($attr);
+        return redirect()->to(route('dashboard'));
     }
 
     /**
@@ -94,11 +111,14 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        Storage::delete($post->image);
+        $post->delete();
+        return redirect()->to(route('dashboard'));
     }
 
     public function uploadImage(Request $request)
     {
+
         $imgpath = $request->file('file')->store('images', 'public');
         return response()->json(['location' => "/storage/$imgpath"]);
     }

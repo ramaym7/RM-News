@@ -26,10 +26,10 @@ Dashboard
                             @foreach ($posts as $post)
                             <tr>
                                 <td class="td-img"><img class="img-tbl" src="{{ asset('storage/'. $post->image) }}"></td>
-                                <td>{{ Str::limit($post->title, 30) }}</td>
-                                <td>{!! Str::limit($post->body, 50) !!}</td>
+                                <td>{{ Str::limit($post->title, 50) }}</td>
+                                <td>{{ $post->category->title }}</td>
                                 <td>
-                                    <a class="btn text-danger" role="button">Delete</a>
+                                    <a href="{{route('dashboard.destroy', $post->id)}}" class="btn text-danger" role="button">Delete</a>
                                     <a href="{{ route('dashboard.show', $post->id) }}" class="btn base-btn" role="button">Detail</a>
                                 </td>
                             </tr>
