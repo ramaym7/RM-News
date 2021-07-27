@@ -1,0 +1,18 @@
+@media (max-width: 600px) {
+  .hide-sm {
+    display: none;
+  }
+  .sm-100{
+      width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .hide-md {
+    display: none;
+  }
+}
+
+.bg-home {
+}
+
