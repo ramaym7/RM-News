@@ -14,7 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'categories' => Category::all(),
+        ];
+        return view('admin.category', $data);
     }
 
     /**
@@ -35,7 +38,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Category::create($request->all());
+        session()->flash('success', 'Kategori berhasil ditambahkan!');
+        return redirect()->back();
     }
 
     /**
@@ -69,7 +74,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->update($request->all());
+        session()->flash('success', 'Kategori berhasil diubah!');
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +87,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        session()->flash('success', 'Kategori berhasil dihapus!');
+        return redirect()->back();
     }
 }

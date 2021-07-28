@@ -11,11 +11,13 @@ class Post extends Model
     use HasFactory;
     protected $guarded = [];
 
-    protected $dates = ['due_date'];
-    public function due_date()
-    {
-        return Carbon::createFromDate($this->due_date);
-    }
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        // your other new column
+    ];
+
+
     public function category()
     {
         return $this->belongsTo(Category::class);

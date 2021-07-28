@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -19,6 +18,7 @@ class PostController extends Controller
     {
         $data = [
             'posts' => Post::orderBy('id', 'desc')->paginate(5),
+            'categories' => Category::all()
         ];
         return view('admin.dashbord', $data);
     }
@@ -48,6 +48,7 @@ class PostController extends Controller
         $imgpath = $request->file('image')->store('images', 'public');
         $attr['image'] = $imgpath;
         Post::create($attr);
+        session()->flash('success', 'Berita berhasil ditambahkan!');
         return redirect()->to(route('dashboard'));
     }
 
@@ -100,6 +101,7 @@ class PostController extends Controller
 
         $attr['image'] = $imgpath;
         $post->update($attr);
+        session()->flash('success', 'Berita berhasil diubah!');
         return redirect()->to(route('dashboard'));
     }
 
@@ -113,6 +115,7 @@ class PostController extends Controller
     {
         Storage::delete($post->image);
         $post->delete();
+        session()->flash('success', 'Berita berhasil dihapus!');
         return redirect()->to(route('dashboard'));
     }
 

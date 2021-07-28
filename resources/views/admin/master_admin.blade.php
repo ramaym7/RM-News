@@ -33,8 +33,8 @@
                     <img class="img-brand" src="{{ asset('assets/img/logo_brand.png') }}">
                 </div>
                 <div class="ms-3 hide-sm">
-                    <a class="link-nav active" href="#">Dashboard</a>
-                    <a class="link-nav" href="#">Video</a>
+                    <a class="link-nav{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
+                    <a class="link-nav{{ request()->is('category') ? ' active' : '' }}" href="{{ route('category') }}">Category</a>
                     <a class="link-nav" href="#">Tranding</a>
                     <a class="link-nav" href="#">Profile</a>
                 </div>

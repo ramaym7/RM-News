@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +28,8 @@ Route::post('/uploadimage', [PostController::class, 'uploadImage'])->name('uploa
 Route::get('/dashboard/edit/{post}', [PostController::class, 'edit'])->name('dashboard.edit');
 Route::post('/dashboard/update/{post}', [PostController::class, 'update'])->name('dashboard.update');
 Route::get('/dashboard/destroy/{post}', [PostController::class, 'destroy'])->name('dashboard.destroy');
+
+Route::get('/category', [CategoryController::class, 'index'])->name('category');
+Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
+Route::post('/category/update/{category}', [CategoryController::class, 'update'])->name('category.update');
+Route::get('/category/destroy/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
