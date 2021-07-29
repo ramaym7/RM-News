@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = [
-            'categories' => Category::all(),
-        ];
-        return view('admin.category', $data);
+        //
     }
 
     /**
@@ -38,21 +35,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required'
-        ]);
-        Category::create($request->all());
-        session()->flash('success', 'Kategori berhasil ditambahkan!');
-        return redirect()->back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Tag $tag)
     {
         //
     }
@@ -60,10 +52,10 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Tag $tag)
     {
         //
     }
@@ -72,29 +64,22 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Tag $tag)
     {
-        $this->validate($request, [
-            'title' => 'required'
-        ]);
-        $category->update($request->all());
-        session()->flash('success', 'Kategori berhasil diubah!');
-        return redirect()->back();
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Tag $tag)
     {
-        $category->delete();
-        session()->flash('success', 'Kategori berhasil dihapus!');
-        return redirect()->back();
+        //
     }
 }

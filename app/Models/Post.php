@@ -9,17 +9,20 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    protected $guarded = [];
-
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        // your other new column
+    protected $fillable = [
+        'category_id',
+        'title',
+        'body',
+        'image'
     ];
-
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }

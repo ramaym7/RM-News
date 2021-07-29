@@ -63,3 +63,4 @@ tinymce.init({
     ],
   content_style: 'body { font-family:Heebo, sans-serif; font-size:14px }'
 });
+

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -32,6 +33,7 @@ class PostController extends Controller
     {
         $data = [
             'categories' => Category::all(),
+            'tags' => Tag::all(),
         ];
         return view('admin.create_news', $data);
     }
@@ -44,10 +46,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // $data = [1, 2, 3, 4];
+        // $tags = array_map('intval', request('tags'));
+        // dd(implode(', ', request('tags')), request('tags'), $data,  $numArray);
+
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'body' => 'required',
+            'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+        ]);
         $attr = $request->all();
         $imgpath = $request->file('image')->store('images', 'public');
         $attr['image'] = $imgpath;
-        Post::create($attr);
+        $post = Post::create($attr);
+        $post->tags()->attach(request('tags'));
         session()->flash('success', 'Berita berhasil ditambahkan!');
         return redirect()->to(route('dashboard'));
     }
@@ -90,6 +102,10 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'body' => 'required',
+        ]);
         $attr = $request->all();
 
         if (request()->file('image')) {

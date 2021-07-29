@@ -16,6 +16,14 @@
             <div>
                 {!! $post->body !!}
             </div>
+
+            <div class="mt-3">
+                @foreach ($post->tags as $tag)
+                    <div class="mb-3 d-inline-block">
+                        <span class="base-category me-2">#{{ $tag->title }}</span>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 </section>

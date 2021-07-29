@@ -5,6 +5,15 @@ Edit News
 
 @section('content')
 <div class="container mt-dashboard">
+    @if ($errors->any())
+    <div class="alert alert-danger mb-3">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <form method="POST" action="{{ route('dashboard.update', $post->id) }}" enctype="multipart/form-data">
         @csrf
         <div class="row">
